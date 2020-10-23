@@ -38,7 +38,12 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         // Is this slow as all hell? No idea really. Does that matter? Probably not.
-        int index = (event.getPlayer().getName().hashCode()*31+LocalTime.now().getMinute()) % plugin.getNameColors().size();
+
+        // Hashcodes can be negative and % doesn't positive, technically abs can give you a negative for
+        // Integer.MIN_VALUE but that's never going to appear since it's already wrapped around and .size() will never
+        // return that
+        int index = Math.abs((event.getPlayer().getName().hashCode()*31+LocalTime.now().getMinute()) % plugin.getNameColors().size());
+
         ChatColor nameColor = plugin.getNameColors().get(index);
         assignedColors.put(event.getPlayer().getName(), nameColor);
 
@@ -78,7 +83,10 @@ public class ChatListener implements Listener {
         // I'm sure this logic is very wrong but if it works I'll leave it as it's kind of on the right track
         // I will think about how this should really work later, I'd like to implement wrap around logic on the atomic setting
         // just to know how to do it properly and efficiently
-        int lineColorIndex = alternateLine.getAndIncrement() % plugin.getMessageColors().size();
+
+        // This logic should properly disable itself when the disable is set, but for now lets make sure it can't go negative during
+        // wrap around either
+        int lineColorIndex = Math.abs(alternateLine.getAndIncrement() % plugin.getMessageColors().size());
         ChatColor messageColor = plugin.getMessageColors().get(lineColorIndex);
 
         // Build up the new format by using the component system only to convert to legacy text so we can change it on the

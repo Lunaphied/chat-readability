@@ -11,9 +11,11 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import java.util.List;
 import java.util.logging.Level;
 
-@Plugin(name="ChatReadability", version="0.0.1")
+// TODO: Make this a text replacement using gradle version
+@Plugin(name="ChatReadability", version="0.0.2")
 @Description("Gives users randomized name colors and alternates chat colors")
 @Author("Iris Johnson <modwizcode@github>")
+// TODO: fix this when the annotation processor updates to support v1_16...
 @ApiVersion(ApiVersion.Target.v1_15)
 public class ChatReadability extends JavaPlugin {
 
