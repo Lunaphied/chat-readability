@@ -2,7 +2,8 @@
 enabled: true
 
 # Should alternating lines get different colors?
-alternating-colors: true
+# This is currently ugly and very beta
+alternating-colors: false
 
 # This specifies a list of valid username colors using the standard /textraw color names
 # theoretically it will eventually support full hex color codes

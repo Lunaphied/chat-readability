@@ -39,7 +39,13 @@ public class ChatListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         // Is this slow as all hell? No idea really. Does that matter? Probably not.
         int index = (event.getPlayer().getName().hashCode()*31+LocalTime.now().getMinute()) % plugin.getNameColors().size();
-        assignedColors.put(event.getPlayer().getName(), plugin.getNameColors().get(index));
+        ChatColor nameColor = plugin.getNameColors().get(index);
+        assignedColors.put(event.getPlayer().getName(), nameColor);
+
+        // Later we set the format string so we can change the player name color in messages but it would be nice if the name list looked
+        // different too (under tab). Set the player list name name to make this happen
+        // This would obviously need to move to a scheduled event if we did name color generation async
+        event.getPlayer().setPlayerListName(nameColor + event.getPlayer().getPlayerListName());
     }
 
     /*
@@ -77,9 +83,14 @@ public class ChatListener implements Listener {
 
         // Build up the new format by using the component system only to convert to legacy text so we can change it on the
         // event level rather than queuing a sync task to send a BaseComponent message via Server
+
+        // Built by specifying parts then modifying properties, repeated, not setting properties then adding parts,
+        // that makes more sense for how the json output actually works.
         String newFormat = BaseComponent.toLegacyText(
-                new ComponentBuilder("<").color(nameColor).append("%1$s").append("> ", ComponentBuilder.FormatRetention.NONE)
-                        .color(messageColor).append("%2$s").create());
+                new ComponentBuilder("<").color(ChatColor.GRAY)
+                .append("%1$s").color(nameColor)
+                .append("> ").color(ChatColor.GRAY)
+                .append("%2$s").color(messageColor).create());
         // Set the new message format
         event.setFormat(newFormat);
     }
