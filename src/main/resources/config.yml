@@ -1,0 +1,16 @@
+# Controls if the plugin is enabled for easy disabling
+enabled: true
+
+# This specifies a list of valid username colors using the standard /textraw color names
+# theoretically it will eventually support full hex color codes
+name-colors:
+  - dark_green
+  - dark_aqua
+  - dark_purple
+  - gold
+  - blue
+  - green
+  - aqua
+  - red
+  - light_purple
+  - yellow
