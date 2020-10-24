@@ -1,3 +1,5 @@
+# This config isn't defined yet, so new fields will not automatically be created unless you delete your old config!
+
 # Controls if the plugin is enabled for easy disabling
 enabled: true
 
@@ -7,6 +9,7 @@ alternating-colors: false
 
 # This specifies a list of valid username colors using the standard /textraw color names
 # theoretically it will eventually support full hex color codes
+# TODO: change this to an enable and a separate list to keep things modular
 name-colors:
   - dark_green
   - dark_aqua
@@ -18,3 +21,14 @@ name-colors:
   - red
   - light_purple
   - yellow
+
+# Optional feature that keeps track of how many users are online with each color and rotates through the list looking
+# for an unused color.
+# TODO: Seperate or combine this with a feature to measure who's actually talking and give those colors more weight when
+# trying to avoid using some colors
+avoid-collisions: true
+
+# TODO: Eventually support this as part of reloads, also decide if hyphens or camelCase is better
+# Theoretically this would clear existing mappings during a reload, which during next message (after the clear completes)
+# would result in them being reassigned since the entry would be missing, concurrency is hard
+# reassign-on-reload: true

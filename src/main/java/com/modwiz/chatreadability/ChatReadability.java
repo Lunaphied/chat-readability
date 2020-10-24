@@ -23,7 +23,8 @@ public class ChatReadability extends JavaPlugin {
     private List<ChatColor> messageColorList = ImmutableList.of(ChatColor.GRAY);
     // Always have a default value in case it's not initialized properly (since we don't check for that)
     private List<ChatColor> nameColorList = ImmutableList.of(ChatColor.DARK_AQUA);
-    //
+    // Why are we storing our config here anyway?
+    private boolean avoidCollisions = true;
 
     @Override
     public void onEnable() {
@@ -47,6 +48,7 @@ public class ChatReadability extends JavaPlugin {
             if (getConfig().getBoolean("alternating-colors")) {
                 messageColorList = ImmutableList.of(ChatColor.GRAY, ChatColor.DARK_GRAY);
             }
+            avoidCollisions = getConfig().getBoolean("avoidCollisions");
             getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         }
     }
@@ -57,5 +59,9 @@ public class ChatReadability extends JavaPlugin {
 
     public List<ChatColor> getNameColors() {
         return nameColorList;
+    }
+
+    public boolean shouldAvoidCollisions() {
+        return avoidCollisions;
     }
 }
