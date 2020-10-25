@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 // TODO: Make this a text replacement using gradle version
-@Plugin(name="ChatReadability", version="0.0.2")
+@Plugin(name="ChatReadability", version="0.0.4")
 @Description("Gives users randomized name colors and alternates chat colors")
 @Author("Iris Johnson <modwizcode@github>")
 // TODO: fix this when the annotation processor updates to support v1_16...
