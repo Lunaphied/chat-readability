@@ -48,7 +48,7 @@ public class ChatReadability extends JavaPlugin {
             if (getConfig().getBoolean("alternating-colors")) {
                 messageColorList = ImmutableList.of(ChatColor.GRAY, ChatColor.DARK_GRAY);
             }
-            avoidCollisions = getConfig().getBoolean("avoidCollisions");
+            avoidCollisions = getConfig().getBoolean("avoid-collisions");
             getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         }
     }
