@@ -5,6 +5,7 @@
 Improve chat readability, this is accomplished by the following:
 * Players get unique username colors assigned upon each connection to the server, these are randomly selected on join and persist until they disconnect for now. The list of possible colors is configurable by the server owner using the config.yml
 * Alternating lines of text get alternating light and dark values, this improves the readability of the actual chat, this can also be disabled.
+* Has a configurable feature for avoiding assigning an in-use username color on join when another is available, helpful for small servers
 
 ## Future goals
 That's about it for now, because I like to think too big, these are some potential plans, roughly ordered in usefulness/likeliness:
